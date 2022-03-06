@@ -1,18 +1,13 @@
-<?php
-session_start();
-if (empty($_SESSION['user']) || $_SESSION['user']['user_role'] != 1) {
-    header("location: _actions/login.php");
-}
-?>
 <?php require "header.php" ?>
 
-<div class="card my-5">
+<div class="card">
     <div class="card-header">
-        Login as <?= $_SESSION['user']['user_name'] ?>
+        Login as <?= $_SESSION['user']['user_name'] ?> Products
     </div>
     <div class="card-body">
         <h5 class="card-title">Title</h5>
         <p class="card-text">Content</p>
+        <a href="product-add.view.php" class="btn btn-primary">Create Product</a>
     </div>
 </div>
 

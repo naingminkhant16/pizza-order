@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (empty($_SESSION['user']) || $_SESSION['user']['user_role'] != 1) {
+    header("location: _actions/login.php");
+}
+require "../config/functions.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,19 +23,17 @@
 
 <body id="body-pd">
     <header class="header" id="header">
-        <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>     
+        <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
         <div class="header_img"><img src="../images/𝐓𝐖𝐈𝐂𝐄 𝐈𝐂𝐎𝐍𝐒' 𝐬𝐚𝐧𝐚.jfif" alt=""></div>
     </header>
     <div class="l-navbar" id="nav-bar">
         <nav class="nav">
             <div>
-                <a href="#" class="nav_logo"> <i class='bx bx-layer nav_logo-icon'></i> <span class="nav_logo-name">BBBootstrap</span> </a>
+                <a href="#" class="nav_logo"> <i class='bx bx-layer nav_logo-icon'></i> <span class="nav_logo-name">Admin Dashboard</span> </a>
                 <div class="nav_list">
-                    <a href="#" class="nav_link active"> <i class='bx bx-grid-alt nav_icon'></i> <span class="nav_name">Dashboard</span> </a>
+                    <a href="index.php" class="nav_link"> <i class='bx bx-grid-alt nav_icon'></i> <span class="nav_name">Dashboard</span> </a>
+                    <!-- <a href="product-add.php" class="nav_link"><i class='bx bxs-customize nav_icon'></i><span class="nav_name">Create Products</span></a> -->
                     <a href="#" class="nav_link"> <i class='bx bx-user nav_icon'></i> <span class="nav_name">Users</span> </a>
-                    <a href="#" class="nav_link"> <i class='bx bx-message-square-detail nav_icon'></i> <span class="nav_name">Messages</span> </a>
-                    <a href="#" class="nav_link"> <i class='bx bx-bookmark nav_icon'></i> <span class="nav_name">Bookmark</span> </a>
-                    <a href="#" class="nav_link"> <i class='bx bx-folder nav_icon'></i> <span class="nav_name">Files</span> </a>
                     <a href="#" class="nav_link"> <i class='bx bx-bar-chart-alt-2 nav_icon'></i> <span class="nav_name">Stats</span> </a>
                 </div>
             </div>
@@ -36,4 +41,5 @@
         </nav>
     </div>
     <!--Container Main start-->
-    <div class="">
+    <div class="p-3">
+        

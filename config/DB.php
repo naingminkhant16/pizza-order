@@ -2,13 +2,13 @@
 
 class DB
 {
-    const dbhost = "localhost:8080";
-    const dbname = "pizza_order";
-    const username = "root";
-    const password = '';
-    public $pdo;
-    public $query;
-    public $data;
+    private const dbhost = "localhost:8080";
+    private const dbname = "pizza_order";
+    private const username = "root";
+    private const password = '';
+    protected $pdo;
+    protected $query;
+    protected $data;
     public function __construct()
     {
         try {
@@ -20,10 +20,22 @@ class DB
             $e->getMessage();
         }
     }
+    public function make($query, $data, $crud)
+    {
+        $this->query = $query;
+        $this->data = $data;
+        return $this->$crud();
+    }
+
     public function get()
     {
         $stmt = $this->pdo->prepare($this->query);
         $stmt->execute($this->data);
         return $stmt->fetch();
+    }
+    public function insert()
+    {
+        $stmt = $this->pdo->prepare($this->query);
+        return $stmt->execute($this->data);
     }
 }

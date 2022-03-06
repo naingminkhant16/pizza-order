@@ -2,11 +2,11 @@
 require "../../config/DB.php";
 session_start();
 $db = new DB();
-$db->query = "SELECT * FROM customers WHERE email=:email";
-$db->data = [
+$query = "SELECT * FROM customers WHERE email=:email";
+$data = [
     ":email" => $_POST['email']
 ];
-$result = $db->get();
+$result = $db->make($query, $data, "get");
 
 if ($result) {
     if ($result->password == $_POST['password'] && $result->role == 1) {
