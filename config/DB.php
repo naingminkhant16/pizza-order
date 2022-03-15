@@ -4,8 +4,8 @@ class DB
 {
     private const dbhost = "localhost:8080";
     private const dbname = "pizza_order";
-    private const username = "root";
-    private const password = '';
+    private const username = "nmk";
+    private const password = '123456';
     protected $pdo;
     protected $query;
     protected $data;
@@ -32,6 +32,12 @@ class DB
         $stmt = $this->pdo->prepare($this->query);
         $stmt->execute($this->data);
         return $stmt->fetch();
+    }
+    public function getAll()
+    {
+        $stmt = $this->pdo->prepare($this->query);
+        $stmt->execute($this->data);
+        return $stmt->fetchAll();
     }
     public function insert()
     {

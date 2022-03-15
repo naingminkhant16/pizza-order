@@ -4,6 +4,7 @@ if (empty($_SESSION['user']) || $_SESSION['user']['user_role'] != 1) {
     header("location: _actions/login.php");
 }
 require "../config/functions.php";
+require "../config/DB.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
