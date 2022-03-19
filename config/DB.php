@@ -39,7 +39,7 @@ class DB
         $stmt->execute($this->data);
         return $stmt->fetchAll();
     }
-    public function insert()
+    public function query()
     {
         $stmt = $this->pdo->prepare($this->query);
         return $stmt->execute($this->data);

@@ -2,10 +2,11 @@
 function dd($str)
 {
     echo "<pre>";
-    return die(var_dump($str));
+    die(var_dump($str));
 }
 function isEmpty($formData)
 {
+    //check inputs are empty or not
     $err = null;
     foreach ($formData as $key => $value) {
         empty(trim($value)) ? $err .= $key . "," : "";

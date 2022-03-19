@@ -1,10 +1,10 @@
 <?php
 session_start();
 if (empty($_SESSION['user']) || $_SESSION['user']['user_role'] != 1) {
-    header("location: _actions/login.php");
+    header("location: login.view.php");
 }
-require "../config/functions.php";
-require "../config/DB.php";
+require_once "../config/functions.php";
+require_once "../config/DB.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,4 +43,3 @@ require "../config/DB.php";
     </div>
     <!--Container Main start-->
     <div class="p-3">
-        
