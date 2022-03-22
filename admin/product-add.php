@@ -32,7 +32,7 @@ if ($_POST) {
             if ($result) {
                 echo "<script>alert('Successfully Created Product.');window.location.href='index.php'</script>";
             } else {
-                echo "<script>alert('Failed to create product!');window.location.href='product-add.view.php'</script>";
+                echo "<script>alert('Failed to create product!');window.location.href='product-add.php'</script>";
             }
         }
     } elseif (isset($err)) {
@@ -50,7 +50,7 @@ if ($_POST) {
 ?>
 <div class="container bg-white" style="max-width:800px;padding:40px;border-radius:10px;">
     <h2 class="text-center" style="font-weight: bold;">Create Product</h2><br>
-    <form action="product-add.view.php" method="post" style="max-width:480px;" class="container" enctype="multipart/form-data">
+    <form action="product-add.php" method="post" style="max-width:480px;" class="container" enctype="multipart/form-data">
         <div class="md-5">
             <label class="form-label">Name:</label>
             <p style="color:red"><?= isset($uiErr['name']) ? '*' . $uiErr['name'] : '' ?></p>
@@ -74,12 +74,17 @@ if ($_POST) {
         <div class="mt-3">
             <label class="form-label">Category:</label>
             <p style="color:red"><?= isset($uiErr['category']) ? '*' . $uiErr['category'] : '' ?></p>
-            <select name="category" class="form-control">
-                <option value="">Select Category</option>
+            <select name="category" class="form-select">
+                <option value="" selected>Select Category</option>
                 <?php
+                $cat = new DB();
+                $cat_items = $cat->make("SELECT * FROM category", null, "getAll");
+                foreach ($cat_items as $cat_item) :
                 ?>
-                <option value="1">Some</option>
-                <?php ?>
+                    <option value="<?= $cat_item->id ?>"><?= $cat_item->name ?></option>
+                <?php
+                endforeach;
+                ?>
             </select>
         </div>
         <div class="mt-3">

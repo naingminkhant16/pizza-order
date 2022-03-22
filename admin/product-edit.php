@@ -22,7 +22,7 @@ if ($_POST) {
             if ($result) {
                 echo "<script>alert('Successfully Edited Product.');window.location.href='index.php'</script>";
             } else {
-                echo "<script>alert('Failed to edit product!');window.location.href='product-edit.view.php'</script>";
+                echo "<script>alert('Failed to edit product!');window.location.href='product-edit.php'</script>";
             }
         } else {
             //backend validation success but check img type
@@ -30,7 +30,7 @@ if ($_POST) {
             $imageType = pathinfo($file, PATHINFO_EXTENSION);
 
             if ($imageType != 'jpg' && $imageType != 'jpeg' && $imageType != 'png') {
-                echo "<script>alert('Invlaid image type');window.location.href='product-edit.view.php'</script>";
+                echo "<script>alert('Invlaid image type');window.location.href='product-edit.php'</script>";
                 die();
             }
             //img type check success and start do query ~~~ name=$_POST['name']
@@ -49,7 +49,7 @@ if ($_POST) {
             if ($result) {
                 echo "<script>alert('Successfully edited Product.');window.location.href='index.php'</script>";
             } else {
-                echo "<script>alert('Failed to edit product!');window.location.href='product-edit.view.php'</script>";
+                echo "<script>alert('Failed to edit product!');window.location.href='product-edit.php'</script>";
             }
         }
     } elseif (isset($err)) {
@@ -98,11 +98,15 @@ $product = $db->make($query, $data, "get");
             <label class="form-label">Category:</label>
             <p style="color:red"><?= isset($uiErr['category']) ? '*' . $uiErr['category'] : '' ?></p>
             <select name="category" class="form-control">
-                <option value="">Select Category</option>
                 <?php
+                $cat = new DB();
+                $cat_items = $cat->make("SELECT * FROM category", null, "getAll");
+                foreach ($cat_items as $cat_item) :
                 ?>
-                <option value="1">Some</option>
-                <?php ?>
+                    <option value="<?= $cat_item->id ?>" <?php if ($cat_item->id == $product->category_id) echo "selected"; ?>><?= $cat_item->name ?></option>
+                <?php
+                endforeach;
+                ?>
             </select>
         </div>
         <div class="mt-3">
